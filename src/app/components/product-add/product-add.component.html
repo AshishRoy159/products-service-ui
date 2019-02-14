@@ -1,0 +1,67 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/products']"><mat-icon>list</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="productForm" (ngSubmit)="onFormSubmit(productForm.value)">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Product Id" formControlName="productId"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!productForm.get('productId').valid && productForm.get('productId').touched">Please enter Product Id</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Product Name" formControlName="productName"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!productForm.get('productName').valid && productForm.get('productName').touched">Please enter Product Name</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Product Desc" formControlName="description"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!productForm.get('description').valid && productForm.get('description').touched">Please enter Product Description</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Product Quantity" formControlName="quantity"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!productForm.get('quantity').valid && productForm.get('quantity').touched">Please enter Product Quantity</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Product Price" formControlName="price"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!productForm.get('price').valid && productForm.get('price').touched">Please enter Product Price</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-select matInput placeholder="Product Category" formControlName="category">
+               <mat-option *ngFor="let category of categories" [value]="category">{{category.categoryName}}</mat-option>
+        </mat-select>
+        <mat-error>
+          <span *ngIf="!productForm.get('category').valid && productForm.get('category').touched">Please enter Product Category</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-select matInput placeholder="Product Size" formControlName="size" multiple>
+          <mat-option *ngFor="let size of productSizes" [value]="size">{{size}}</mat-option>
+        </mat-select>
+        <mat-error>
+          <span *ngIf="!productForm.get('size').valid && productForm.get('size').touched">Please enter Product Size</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button type="submit" [disabled]="!productForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
+      </div>
+    </form>
+  </mat-card>
+</div>
